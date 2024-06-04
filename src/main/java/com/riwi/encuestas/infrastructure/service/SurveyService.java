@@ -2,6 +2,7 @@ package com.riwi.encuestas.infrastructure.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import com.riwi.encuestas.domain.entity.UserEntity;
 import com.riwi.encuestas.domain.repositories.SurveyRespository;
 import com.riwi.encuestas.domain.repositories.UserRepository;
 import com.riwi.encuestas.infrastructure.abstract_services.ISurveyService;
+import com.riwi.encuestas.infrastructure.helpers.EmailHelper;
 import com.riwi.encuestas.utils.enums.exceptions.BadRequestException;
 import com.riwi.encuestas.utils.enums.messages.ErrorMessage;
 
@@ -34,11 +36,17 @@ public class SurveyService implements ISurveyService {
     @Autowired
     private final SurveyRespository SurveyRespository;
 
+    @Autowired
+    private final EmailHelper emailHelper;
+
     @Override
     public SurveyResp create(SurveyReq request) {
         UserEntity creator = this.usersRepositoy.findById(request.getCreator_id())
                 .orElseThrow(() -> new BadRequestException(ErrorMessage.idNotFound("creator")));
 
+        if (Objects.nonNull(creator.getEmail())) {
+            this.emailHelper.sendMail(creator.getEmail(), creator.getName());
+        }
         // if (creator.isActive().equals(true)) {
         // throw new BadRequestException("No cumples el rol para ser instructor de este
         // curso");
