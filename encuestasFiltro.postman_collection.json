@@ -1,0 +1,267 @@
+{
+	"info": {
+		"_postman_id": "2d385cd0-bb98-49b1-9600-65a9f668eb08",
+		"name": "encuestasFiltro",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34443818"
+	},
+	"item": [
+		{
+			"name": "task-dev-01",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/class",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"class"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "task-dev-02",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/users/5d44128c-6d6c-4e93-9dd4-c7ed1861dc43",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"5d44128c-6d6c-4e93-9dd4-c7ed1861dc43"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "task-dev-03",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"carlos4\",\n    \"email\":\"a@gmail.com\",\n    \"active\":false,\n    \"password\":\"123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "task-dev-04",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"carlos22\",\n    \"email\":\"carlito@gmail.com\",\n    \"active\":false,\n    \"password\":\"123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/users/5d44128c-6d6c-4e93-9dd4-c7ed1861dc43",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"5d44128c-6d6c-4e93-9dd4-c7ed1861dc43"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "task-dev-05",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"text\":\"vives en colombia?\",\n    \"type\":\"OPEN\",\n    \"active\":true,\n    \"survey_id\":\"339a9de1-7898-4fab-9597-5136f0403722\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/question",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"question"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "task-dev-06",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "task-dev-08",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"text\":\"vives en colombia?\",\n    \"type\":\"cerrada\",\n    \"active\":false,\n    \"survey_id\":\"f8c7c691-b122-46a5-bf83-6dc908e9395c\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/questions/d7ac34ad-88fd-43f5-950c-39122b00286d",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"questions",
+						"d7ac34ad-88fd-43f5-950c-39122b00286d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "task-dev-09",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/questions/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"questions",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "task-dev-10",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/surveys",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"surveys"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "task-dev-11",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "task-dev-12",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\":\"hola\",\n    \"description\":\"cuestionario\",\n    \"creationDate\":\"2026-12-12\",\n    \"active\":true,\n    \"creator_id\":\"011c7ec8-ea52-4161-a43f-dfd90e91f7c6\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/surveys",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"surveys"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
