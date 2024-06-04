@@ -1,5 +1,8 @@
 package com.riwi.encuestas.api.dto.request;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,8 +13,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserReq {
+    @NotBlank(message = "el nombre es requerido")
     private String name;
+    @Email(message = "el email no es valido")
+    @Size(min = 5, max = 100, message = "el email debe tener entre 5 y 100 caracteres")
     private String email;
+    @NotBlank(message = "debe especificar si el usuario esta activo o no")
     private boolean active;
+    @NotBlank(message = "la contraseña es requerida")
     private String password;
 }

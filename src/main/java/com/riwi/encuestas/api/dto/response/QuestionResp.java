@@ -3,7 +3,6 @@ package com.riwi.encuestas.api.dto.response;
 import java.util.List;
 
 import com.riwi.encuestas.domain.entity.OptionQuestion;
-import com.riwi.encuestas.domain.entity.SurveyEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,6 +18,6 @@ public class QuestionResp {
     private String text;
     private String type;
     private boolean active;
-    private SurveyEntity survey;
+    private BasicSurveyResp survey;
     private List<OptionQuestion> optionQuestions;
 }
