@@ -48,15 +48,13 @@ public class QuestionService implements IQuestionService {
     @Override
     public QuestionResp update(QuestionReq request, String id) {
         QuestionEntity question = this.find(id);
-
+    
         SurveyEntity survey = this.SurveyRespository.findById(request.getSurvey_id())
                 .orElseThrow(() -> new BadRequestException(ErrorMessage.idNotFound("Cuestionario")));
-
-        question = this.requestToEntity(request);
-
+    
+        question.setText(request.getText());
         question.setSurvey(survey);
-        question.setQuestion_id(id);
-
+    
         return this.entityToResponse(this.questionRepository.save(question));
     }
 
