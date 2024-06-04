@@ -2,11 +2,14 @@ package com.riwi.encuestas.infrastructure.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.riwi.encuestas.api.dto.request.SurveyReq;
 import com.riwi.encuestas.api.dto.response.BasicQuestionResp;
@@ -39,7 +42,8 @@ public class SurveyService implements ISurveyService {
                 .orElseThrow(() -> new BadRequestException(ErrorMessage.idNotFound("creator")));
 
         // if (creator.isActive().equals(true)) {
-        //     throw new BadRequestException("No cumples el rol para ser instructor de este curso");
+        // throw new BadRequestException("No cumples el rol para ser instructor de este
+        // curso");
         // }
 
         SurveyEntity survey = this.requestToEntity(request);
@@ -67,8 +71,13 @@ public class SurveyService implements ISurveyService {
 
     @Override
     public Page<SurveyResp> getAll(int Page, int size) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAll'");
+        if (Page < 0)
+            Page = 0;
+
+        PageRequest pagination = PageRequest.of(Page, size);
+
+        return this.SurveyRespository.findAll(pagination)
+                .map(survey -> this.entityToResponse(survey));
     }
 
     private SurveyResp entityToResponse(SurveyEntity entity) {

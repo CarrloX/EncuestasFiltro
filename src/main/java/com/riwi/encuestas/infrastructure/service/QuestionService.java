@@ -3,6 +3,7 @@ package com.riwi.encuestas.infrastructure.service;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.riwi.encuestas.api.dto.request.QuestionReq;
@@ -41,26 +42,38 @@ public class QuestionService implements IQuestionService {
 
     @Override
     public QuestionResp get(String id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'get'");
+        return this.entityToResponse(this.find(id));
     }
 
     @Override
     public QuestionResp update(QuestionReq request, String id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        QuestionEntity question = this.find(id);
+
+        SurveyEntity survey = this.SurveyRespository.findById(request.getSurvey_id())
+                .orElseThrow(() -> new BadRequestException(ErrorMessage.idNotFound("Cuestionario")));
+
+        question = this.requestToEntity(request);
+
+        question.setSurvey(survey);
+        question.setQuestion_id(id);
+
+        return this.entityToResponse(this.questionRepository.save(question));
     }
 
     @Override
     public void delete(String id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        this.questionRepository.delete(this.find(id));
     }
 
     @Override
     public Page<QuestionResp> getAll(int Page, int size) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAll'");
+        if (Page < 0)
+            Page = 0;
+
+        PageRequest pagination = PageRequest.of(Page, size);
+
+        return this.questionRepository.findAll(pagination)
+                .map(question -> this.entityToResponse(question));
     }
 
     private QuestionResp entityToResponse(QuestionEntity entity) {
