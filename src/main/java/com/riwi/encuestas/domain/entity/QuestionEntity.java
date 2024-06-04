@@ -2,6 +2,8 @@ package com.riwi.encuestas.domain.entity;
 
 import java.util.List;
 
+import com.riwi.encuestas.utils.enums.Type;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -30,7 +32,7 @@ public class QuestionEntity {
     private String question_id;
     private String text;
     @Column(nullable = false, length = 50)
-    private String type;
+    private Type type;
     private boolean active;
 
     @ManyToOne(fetch = FetchType.LAZY)
